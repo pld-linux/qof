@@ -1,0 +1,34 @@
+--- qof-0.6.1/lib/libsql/Makefile.am.orig	2005-12-28 18:10:23.000000000 +0100
++++ qof-0.6.1/lib/libsql/Makefile.am	2006-02-21 23:15:37.501079250 +0100
+@@ -3,7 +3,7 @@
+ lib_LTLIBRARIES = libqofsql.la
+ 
+ libqofsql_la_LDFLAGS= -version-info $(LIBQOFSQL_LIBRARY_VERSION) 
+-
++libqofsql_la_LIBADD = @GLIB_LIBS@
+ libqofsql_la_SOURCES = \
+ 	parser.c \
+ 	parser.h \
+--- qof-0.6.1/qof/Makefile.am.orig	2005-12-29 17:35:14.000000000 +0100
++++ qof-0.6.1/qof/Makefile.am	2006-02-21 23:19:10.998422000 +0100
+@@ -89,17 +89,16 @@
+ INCLUDES = \
+   -DPREFIX=\""$(prefix)"\"  \
+   -DDATADIR=\""$(datadir)"\"
++SQLLIB=$(LIBGDA_LIBS)
+ else
+ INCLUDES = \
+   -I${top_srcdir}/lib/libsql  \
+   -DPREFIX=\""$(prefix)"\" \
+   -DDATADIR=\""$(datadir)"\"
++SQLLIB=$(top_builddir)/lib/libsql/libqofsql.la
+ endif
+ 
+-LDADD = \
+-  ${LIBGDA_LIBS} \
+-  ${GMODULE_LIBS} \
+-  ${GLIB_LIBS}
++libqof_la_LIBADD = $(SQLLIB) $(GMODULE_LIBS) $(GOBJECT_LIBS) $(GLIB_LIBS) -lm
+ 
+ EXTRA_DIST = \
+   qofla-dir.h.in \
