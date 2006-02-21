@@ -1,4 +1,3 @@
-# TODO: fix shared libs linking, -devel deps
 Summary:	Query Object Framework
 Summary(pl):	Obiektowy szkielet zapytañ
 Name:		qof
@@ -8,9 +7,15 @@ License:	GPL v2+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/qof/%{name}-%{version}.tar.gz
 # Source0-md5:	2a1c4b231fb03e49d5d9237dc6698c3e
+Patch0:		%{name}-link.patch
+Patch1:		%{name}-libgda2.patch
 URL:		http://qof.sourceforge.net/
+BuildRequires:	autoconf >= 2.53
+BuildRequires:	automake
+#BuildRequires:	dwi-devel (http://dwi.sourceforge.net/)
 BuildRequires:	glib2-devel >= 2.0.0
-BuildRequires:	libgda-devel >= 1.2.0
+BuildRequires:	libgda-devel >= 1.9.0
+BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.5.10
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
@@ -38,6 +43,8 @@ Summary:	Header files for QOF library
 Summary(pl):	Pliki nag³ówkowe biblioteki QOF
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	glib2-devel >= 2.0.0
+Requires:	libgda-devel >= 1.9.0
 
 %description devel
 Header files for QOF library.
@@ -59,8 +66,15 @@ Statyczne biblioteki QOF.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure
 %{__make}
 
