@@ -1,24 +1,25 @@
 Summary:	Query Object Framework
 Summary(pl):	Obiektowy szkielet zapytañ
 Name:		qof
-Version:	0.6.1
+Version:	0.6.2
 Release:	0.1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/qof/%{name}-%{version}.tar.gz
-# Source0-md5:	2a1c4b231fb03e49d5d9237dc6698c3e
+# Source0-md5:	caab8c1cb8fa3235ebae51eb8d4901cb
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-libgda2.patch
 URL:		http://qof.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-#BuildRequires:	dwi-devel (http://dwi.sourceforge.net/)
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	libgda-devel >= 1.9.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.5.10
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig
+# outdated code
+BuildConflicts:	dwi-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
