@@ -1,5 +1,5 @@
 Summary:	Query Object Framework
-Summary(pl):	Obiektowy szkielet zapytaÒ
+Summary(pl.UTF-8):   Obiektowy szkielet zapyta≈Ñ
 Name:		qof
 Version:	0.6.2
 Release:	0.1
@@ -30,18 +30,18 @@ and perform table-join type queries across them. In addition, the
 query engine can be backed by an actual database, so that instances
 of local objects can act as a 'cache' to a much larger SQL database.
 
-%description -l pl
-QOF to odprysk silnika GnuCasha, sk≥adaj±cy siÍ z czÍ∂ci nie
-zwi±zanych z finansami. Silnik zapytaÒ pozwala aplikacjom C/C++
-traktowaÊ dowolne kolekcje obiektÛw tak, jakby by≥y tabelami SQL i
-wykonywaÊ na nich zapytania z ≥±czeniem tabel. Ponadto silnik zapytaÒ
-moøe byÊ powi±zany z w≥a∂ciw± baz± danych, dziÍki czemu instancje
-obiektÛw lokalnych mog± s≥uøyÊ jako "pamiÍÊ podrÍczna" dla duøo
-wiÍkszej bazy danych SQL.
+%description -l pl.UTF-8
+QOF to odprysk silnika GnuCasha, sk≈ÇadajƒÖcy siƒô z czƒô≈õci nie
+zwiƒÖzanych z finansami. Silnik zapyta≈Ñ pozwala aplikacjom C/C++
+traktowaƒá dowolne kolekcje obiekt√≥w tak, jakby by≈Çy tabelami SQL i
+wykonywaƒá na nich zapytania z ≈ÇƒÖczeniem tabel. Ponadto silnik zapyta≈Ñ
+mo≈ºe byƒá powiƒÖzany z w≈Ça≈õciwƒÖ bazƒÖ danych, dziƒôki czemu instancje
+obiekt√≥w lokalnych mogƒÖ s≈Çu≈ºyƒá jako "pamiƒôƒá podrƒôczna" dla du≈ºo
+wiƒôkszej bazy danych SQL.
 
 %package devel
 Summary:	Header files for QOF library
-Summary(pl):	Pliki nag≥Ûwkowe biblioteki QOF
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe biblioteki QOF
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 2.0.0
@@ -50,19 +50,19 @@ Requires:	libgda-devel >= 1.9.0
 %description devel
 Header files for QOF library.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe biblioteki QOF.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe biblioteki QOF.
 
 %package static
 Summary:	Static QOF libraries
-Summary(pl):	Statyczne biblioteki QOF
+Summary(pl.UTF-8):   Statyczne biblioteki QOF
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static QOF libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczne biblioteki QOF.
 
 %prep
