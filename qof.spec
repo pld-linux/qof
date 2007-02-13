@@ -1,5 +1,5 @@
 Summary:	Query Object Framework
-Summary(pl.UTF-8):   Obiektowy szkielet zapytań
+Summary(pl.UTF-8):	Obiektowy szkielet zapytań
 Name:		qof
 Version:	0.6.2
 Release:	0.1
@@ -41,7 +41,7 @@ większej bazy danych SQL.
 
 %package devel
 Summary:	Header files for QOF library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki QOF
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki QOF
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 2.0.0
@@ -55,7 +55,7 @@ Pliki nagłówkowe biblioteki QOF.
 
 %package static
 Summary:	Static QOF libraries
-Summary(pl.UTF-8):   Statyczne biblioteki QOF
+Summary(pl.UTF-8):	Statyczne biblioteki QOF
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
