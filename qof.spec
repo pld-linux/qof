@@ -1,25 +1,24 @@
 Summary:	Query Object Framework
 Summary(pl.UTF-8):	Obiektowy szkielet zapytań
 Name:		qof
-Version:	0.6.2
-Release:	0.1
+Version:	0.7.2
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/qof/%{name}-%{version}.tar.gz
-# Source0-md5:	caab8c1cb8fa3235ebae51eb8d4901cb
+# Source0-md5:	dff6bfda556544a240e833d22e509b50
 Patch0:		%{name}-link.patch
-Patch1:		%{name}-libgda2.patch
 URL:		http://qof.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 2.0.0
-BuildRequires:	libgda-devel >= 1.9.0
+BuildRequires:	glib2-devel >= 1:2.10.0
+BuildRequires:	libgda-devel >= 1:1.2.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.5.10
-BuildRequires:	perl-base
+BuildRequires:	perl-base >= 5.0
 BuildRequires:	pkgconfig
-# outdated code
-BuildConflicts:	dwi-devel
+BuildRequires:	sqlite-devel >= 2.8.0
+Requires:	glib2 >= 1:2.10.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,8 +43,8 @@ Summary:	Header files for QOF library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki QOF
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 2.0.0
-Requires:	libgda-devel >= 1.9.0
+Requires:	glib2-devel >= 1:2.10.0
+Requires:	libgda-devel >= 1:1.2.0
 
 %description devel
 Header files for QOF library.
@@ -68,7 +67,6 @@ Statyczne biblioteki QOF.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -76,7 +74,9 @@ Statyczne biblioteki QOF.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--disable-doxygen \
+	--enable-sqlite
 %{__make}
 
 %install
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# dlopened
+rm -f $RPM_BUILD_ROOT%{_libdir}/libqof-backend-*.{la,a}
 
 %find_lang %{name}
 
@@ -96,17 +99,21 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
-%attr(755,root,root) %{_libdir}/libqof*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libqof.so.*.*.*
+%attr(755,root,root) %{_libdir}/libqof-backend-qsf.so.*.*.*
+%attr(755,root,root) %{_libdir}/libqof-backend-qsf.so
+%attr(755,root,root) %{_libdir}/libqof-backend-sqlite.so.*.*.*
+%attr(755,root,root) %{_libdir}/libqof-backend-sqlite.so
 %{_datadir}/xml/qof
 
 %files devel
 %defattr(644,root,root,755)
 %doc doc/*.txt
-%attr(755,root,root) %{_libdir}/libqof*.so
-%{_libdir}/libqof*.la
+%attr(755,root,root) %{_libdir}/libqof.so
+%{_libdir}/libqof.la
 %{_includedir}/qof
 %{_pkgconfigdir}/qof-1.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libqof*.a
+%{_libdir}/libqof.a
