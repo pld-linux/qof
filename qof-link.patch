@@ -15,7 +15,7 @@
  INCLUDES = \
    -DPREFIX=\""$(prefix)"\"  \
    -DDATADIR=\""$(datadir)"\"
-+SQLLIB=$(LIBGDA_LIBS)
++SQLLIB=$(LIBGDA_LIBS) -lgdasql
  else
  INCLUDES = \
    -I${top_srcdir}/lib/libsql  \
