@@ -1,18 +1,18 @@
 Summary:	Query Object Framework
 Summary(pl.UTF-8):	Obiektowy szkielet zapytań
 Name:		qof
-Version:	0.7.2
+Version:	0.7.5
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/qof/%{name}-%{version}.tar.gz
-# Source0-md5:	dff6bfda556544a240e833d22e509b50
+# Source0-md5:	91adad70f0a1da22f5e8c5cfd2b16f22
 Patch0:		%{name}-link.patch
 URL:		http://qof.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 1:2.10.0
-BuildRequires:	libgda-devel >= 1:1.2.0
+BuildRequires:	libgda3-devel >= 3.0.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.5.10
 BuildRequires:	perl-base >= 5.0
@@ -44,7 +44,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki QOF
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.10.0
-Requires:	libgda-devel >= 1:1.2.0
+Requires:	libgda3-devel >= 3.0.1
 
 %description devel
 Header files for QOF library.
@@ -76,6 +76,7 @@ Statyczne biblioteki QOF.
 %{__automake}
 %configure \
 	--disable-doxygen \
+	--enable-gdabackend \
 	--enable-sqlite
 %{__make}
 
@@ -100,9 +101,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/libqof.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libqof.so.1
+%attr(755,root,root) %{_libdir}/libqof-backend-gda.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libqof-backend-gda.so.0
+%attr(755,root,root) %{_libdir}/libqof-backend-gda.so
 %attr(755,root,root) %{_libdir}/libqof-backend-qsf.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libqof-backend-qsf.so.0
 %attr(755,root,root) %{_libdir}/libqof-backend-qsf.so
 %attr(755,root,root) %{_libdir}/libqof-backend-sqlite.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libqof-backend-sqlite.so.0
 %attr(755,root,root) %{_libdir}/libqof-backend-sqlite.so
 %{_datadir}/xml/qof
 
@@ -113,6 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libqof.la
 %{_includedir}/qof
 %{_pkgconfigdir}/qof-1.pc
+%{_pkgconfigdir}/qof.pc
 
 %files static
 %defattr(644,root,root,755)
