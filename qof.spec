@@ -1,16 +1,18 @@
 Summary:	Query Object Framework
 Summary(pl.UTF-8):	Obiektowy szkielet zapytań
 Name:		qof
-Version:	0.7.5
+Version:	0.8.1
 Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/qof/%{name}-%{version}.tar.gz
-# Source0-md5:	91adad70f0a1da22f5e8c5cfd2b16f22
-Patch0:		%{name}-link.patch
-URL:		http://qof.sourceforge.net/
-BuildRequires:	autoconf >= 2.53
+Source0:	https://alioth.debian.org/frs/download.php/3059/%{name}-%{version}.tar.gz
+# Source0-md5:	f504815983949752b7133f108760b99c
+Patch0:		ac.patch
+Patch1:		undefined_behavior.patch
+URL:		https://alioth.debian.org/projects/qof/
+BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
+BuildRequires:	gettext-devel >= 0.18.1
 BuildRequires:	glib2-devel >= 1:2.10.0
 BuildRequires:	libgda3-devel >= 3.0.1
 BuildRequires:	libtool
@@ -67,8 +69,10 @@ Statyczne biblioteki QOF.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
+%{__gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -87,7 +91,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 # dlopened
-rm -f $RPM_BUILD_ROOT%{_libdir}/libqof-backend-*.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/qof2/libqof-backend-*.{la,a}
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libqof.la
 
 %find_lang %{name}
 
@@ -101,25 +107,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/libqof.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libqof.so.1
-%attr(755,root,root) %{_libdir}/libqof-backend-gda.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libqof-backend-gda.so.0
-%attr(755,root,root) %{_libdir}/libqof-backend-gda.so
-%attr(755,root,root) %{_libdir}/libqof-backend-qsf.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libqof-backend-qsf.so.0
-%attr(755,root,root) %{_libdir}/libqof-backend-qsf.so
-%attr(755,root,root) %{_libdir}/libqof-backend-sqlite.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libqof-backend-sqlite.so.0
-%attr(755,root,root) %{_libdir}/libqof-backend-sqlite.so
+%attr(755,root,root) %ghost %{_libdir}/libqof.so.2
+%attr(755,root,root) %{_libdir}/qof2/libqof-backend-gda.so
+%attr(755,root,root) %{_libdir}/qof2/libqof-backend-qsf.so
+%attr(755,root,root) %{_libdir}/qof2/libqof-backend-sqlite.so
 %{_datadir}/xml/qof
 
 %files devel
 %defattr(644,root,root,755)
 %doc doc/*.txt
 %attr(755,root,root) %{_libdir}/libqof.so
-%{_libdir}/libqof.la
 %{_includedir}/qof
-%{_pkgconfigdir}/qof-1.pc
 %{_pkgconfigdir}/qof.pc
 
 %files static

@@ -1,0 +1,11 @@
+--- qof-0.8.1/configure.ac.wiget	2011-02-07 19:53:00.926872041 +0100
++++ qof-0.8.1/configure.ac	2011-02-07 19:59:51.518454558 +0100
+@@ -9,7 +9,7 @@ AC_DEFUN([MAJOR], [0])
+ AC_DEFUN([MINOR], [8])
+ AC_DEFUN([MICRO], [1])
+ AC_DEFUN([MY_VERSION], [MAJOR.MINOR.MICRO])
+-AC_INIT([qof], [MY_VERSION],
++AC_INIT([qof], MY_VERSION,
+   [http://lists.sourceforge.net/lists/listinfo/qof-devel])
+ AC_PREREQ(2.61)
+ AC_GNU_SOURCE
