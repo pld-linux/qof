@@ -12,6 +12,7 @@ Patch1:		undefined_behavior.patch
 URL:		https://alioth.debian.org/projects/qof/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
+BuildRequires:	db-devel
 BuildRequires:	gettext-devel >= 0.18.1
 BuildRequires:	glib2-devel >= 1:2.10.0
 BuildRequires:	libgda3-devel >= 3.0.1
@@ -25,11 +26,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 QOF is an offshoot of the GnuCash engine, consisting of those pieces
-unrelated to accounting. The Query Engine allows C/C++ applications
-to treat random collections of objects as if they were SQL tables,
-and perform table-join type queries across them. In addition, the
-query engine can be backed by an actual database, so that instances
-of local objects can act as a 'cache' to a much larger SQL database.
+unrelated to accounting. The Query Engine allows C/C++ applications to
+treat random collections of objects as if they were SQL tables, and
+perform table-join type queries across them. In addition, the query
+engine can be backed by an actual database, so that instances of local
+objects can act as a 'cache' to a much larger SQL database.
 
 %description -l pl.UTF-8
 QOF to odprysk silnika GnuCasha, składający się z części nie
