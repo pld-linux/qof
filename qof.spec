@@ -2,7 +2,7 @@ Summary:	Query Object Framework
 Summary(pl.UTF-8):	Obiektowy szkielet zapytań
 Name:		qof
 Version:	0.8.1
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 Source0:	https://alioth.debian.org/frs/download.php/3059/%{name}-%{version}.tar.gz
