@@ -108,6 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_libdir}/libqof.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libqof.so.2
+%dir %{_libdir}/qof2
 %attr(755,root,root) %{_libdir}/qof2/libqof-backend-gda.so
 %attr(755,root,root) %{_libdir}/qof2/libqof-backend-qsf.so
 %attr(755,root,root) %{_libdir}/qof2/libqof-backend-sqlite.so
