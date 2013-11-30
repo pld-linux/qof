@@ -1,21 +1,19 @@
 Summary:	Query Object Framework
 Summary(pl.UTF-8):	Obiektowy szkielet zapytań
 Name:		qof
-Version:	0.8.1
-Release:	2
+Version:	0.8.7
+Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	https://alioth.debian.org/frs/download.php/3059/%{name}-%{version}.tar.gz
-# Source0-md5:	f504815983949752b7133f108760b99c
-Patch0:		ac.patch
-Patch1:		undefined_behavior.patch
+Source0:	https://alioth.debian.org/frs/download.php/file/3908/%{name}-%{version}.tar.gz
+# Source0-md5:	4f32eaf1fa92819fccb1590fdc2233a5
 URL:		https://alioth.debian.org/projects/qof/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake
 BuildRequires:	db-devel
 BuildRequires:	gettext-devel >= 0.18.1
 BuildRequires:	glib2-devel >= 1:2.10.0
-BuildRequires:	libgda3-devel >= 3.0.1
+BuildRequires:	libgda5-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.5.10
 BuildRequires:	perl-base >= 5.0
@@ -69,8 +67,6 @@ Statyczne biblioteki QOF.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
 %{__gettextize}
@@ -83,7 +79,8 @@ Statyczne biblioteki QOF.
 	--disable-doxygen \
 	--enable-gdabackend \
 	--enable-sqlite
-%{__make}
+
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
