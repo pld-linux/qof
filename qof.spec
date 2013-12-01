@@ -7,13 +7,14 @@ License:	GPL v2+
 Group:		Libraries
 Source0:	https://alioth.debian.org/frs/download.php/file/3908/%{name}-%{version}.tar.gz
 # Source0-md5:	4f32eaf1fa92819fccb1590fdc2233a5
+Patch0:		%{name}-format.patch
 URL:		https://alioth.debian.org/projects/qof/
-BuildRequires:	autoconf >= 2.61
+BuildRequires:	autoconf >= 2.68
 BuildRequires:	automake
 BuildRequires:	db-devel
 BuildRequires:	gettext-devel >= 0.18.1
 BuildRequires:	glib2-devel >= 1:2.10.0
-BuildRequires:	libgda5-devel
+BuildRequires:	libgda3-devel >= 3.0.1
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.5.10
 BuildRequires:	perl-base >= 5.0
@@ -67,6 +68,7 @@ Statyczne biblioteki QOF.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__gettextize}
@@ -90,7 +92,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # dlopened
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/qof2/libqof-backend-*.{la,a}
-
+# obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libqof.la
 
 %find_lang %{name}

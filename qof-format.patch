@@ -1,0 +1,11 @@
+--- qof-0.8.7/backend/gda/qof-gda.c.orig	2011-05-04 21:53:53.000000000 +0200
++++ qof-0.8.7/backend/gda/qof-gda.c	2013-12-01 09:30:05.564960365 +0100
+@@ -357,7 +357,7 @@
+ 		qof_error_set_be (be, qof_error_register (msg, FALSE));
+ 		PERR (" failed to connect to GDA: '%s'", msg);
+ 		qgda_be->error = TRUE;
+-		g_message (msg);
++		g_message ("%s", msg);
+ 		g_free (msg);
+ 		g_error_free (qgda_be->gda_err);
+ #ifdef ONLY_DEBUG
