@@ -12,7 +12,7 @@ URL:		https://alioth.debian.org/projects/qof/
 BuildRequires:	autoconf >= 2.68
 BuildRequires:	automake
 BuildRequires:	db-devel
-BuildRequires:	gettext-devel >= 0.18.1
+BuildRequires:	gettext-tools >= 0.18.1
 BuildRequires:	glib2-devel >= 1:2.10.0
 BuildRequires:	libgda3-devel >= 3.0.1
 BuildRequires:	libtool
